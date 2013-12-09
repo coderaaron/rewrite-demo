@@ -6,9 +6,15 @@
  */
  
 function ag_add_rewrite_rule() {
-	add_rewrite_rule( 'howdy', 'index.php?&p=1', 'top');
+	add_rewrite_rule( 'howdy', 'index.php?p=1', 'top');
+	
+	add_rewrite_rule(
+		'^([^/]*)/referal/^([^/]*)/?$', 
+		'index.php?p=$matches[1]&referal=$matches[2]',
+		'top'
+	);
+
 	flush_rewrite_rules();
 }
 add_action( 'init', 'ag_add_rewrite_rule');
-
 ?>
